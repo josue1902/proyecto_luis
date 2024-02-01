@@ -20,12 +20,13 @@ while True:
     opcion = int(input("Ingesa una opcion: "))
 
     if opcion == 1:
-        titulo = input("Ingrese el titulo del libro ('salir para salir): ")
+        titulo = input("Ingrese el titulo del libro: ")
         #if opcion == "salir":
             #break
 
         autor = input("Ingresa el autor del libro: ")
         anio_publicacion = int(input("Ingresa el año de publicacion: "))
+        estado = True
 
         libro_ingresado = [titulo, autor, anio_publicacion]
         biblioteca.append(libro_ingresado)
@@ -33,11 +34,15 @@ while True:
 
     elif opcion == 2:
         titulo_libro = input("Ingresa el titulo del libro: ")
+        libro_encontrado = False
+
         for libro in biblioteca:
-            if titulo in libro[0]:
+            if titulo_libro in libro[0]:
                 print("Datos del libro solicitado: ",libro)
-            else:
-                print("No se ha encontrado el libro")
+                libro_encontrado = True
+                break
+        if not libro_encontrado:
+            print("No se ha encontrado el libro")
 
     elif opcion == 3:
         nombre = input("Ingresa tu nombre: ")
@@ -46,16 +51,17 @@ while True:
 
         libro_nombre = input("Ingresa el titulo del libro que quieres pedir prestado: ")
 
-        libro_encontrado = None
+        libro_encontrado = False
         for libro  in biblioteca:
-            if titulo in libro[0]:
+            if libro_nombre in libro[0]:
                 libro_encontrado = libro
                 break
 
         if libro_encontrado:
             prestado = [nombre, fecha, libro_encontrado]
             biblioteca.remove(libro_encontrado)
-            print("Se ha prestado el libro a", prestado )
+            print(f"Se ha prestado el libro {libro_nombre} a {nombre} en la fecha {fecha}")
+
 
         else:
             print(f"El libro {libro_nombre} no esta disponible")
@@ -66,18 +72,18 @@ while True:
             if titulo in prestado[0]:
                 prestado.remove(prestado)
 
-        print(f"El libro {prestado[0]} se ha devuelto")
+        print(f"El libro {prestado} se ha devuelto")
 
 
     elif opcion == 5:
-        print(biblioteca)
+        for libro in biblioteca:
+            
+            print("Los libros disponibles de la biblioteca son:", libro)
+
+
+
+
+# falta la opcion 5 terminar
         
 
-
-
-
-# Errores encontrados en el momento
-# 1 cuando buscamos un libro, nos sale varios mensajes que no se ha enontrado, despues que si
-# 2 cuando usamos la opcion de prestar un libro, se presta el libro pero no es ese, se presta otro libro, por ejemplo, pedimos el de python y nos presta el de java
-        
-
+#si el libro esta en la lista biblioteca, significa que el libro esta disponible
