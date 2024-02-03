@@ -9,16 +9,24 @@ class Biblioteca:
         if titulo in self.libros:
             print("El libro ya se encuentra en la biblioteca")
         else:
-            libro_nuevo = {"titulo": titulo, 'autor': autor, 'anio de publicacion': anio_publicacion}
-            
+            libro_nuevo = {"titulo": titulo, 'autor': autor, 'anio de publicacion': anio_publicacion} 
             self.libros[titulo] = libro_nuevo
             self.biblioteca = self.libros
-            
-        
-
-            
+   
     def mostrar_biblioteca(self):          
         print(self.biblioteca)
+
+
+    def buscar_libro(self, buscar):
+        
+
+
+
+
+
+
+
+
 
 biblioteca1 = Biblioteca()
 
@@ -29,3 +37,5 @@ biblioteca1.agregar_libro("c#", "nicolas", 2003)
 biblioteca1.agregar_libro("javascript", "sebastian", 2015)
 
 biblioteca1.mostrar_biblioteca()
+
+biblioteca1.buscar_libro("python")
