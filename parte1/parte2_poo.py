@@ -18,6 +18,7 @@ class Biblioteca:
 
 
     def buscar_libro(self, buscar):
+        pass
         
 
 
