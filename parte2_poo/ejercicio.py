@@ -1,51 +1,56 @@
+# Clases
 class Biblioteca:
     def __init__(self):
         self.biblioteca = {}
-        self.libros = {}
-        self.libros_prestados = {}
+        self.libros = [] # agregamos los libros
+        self.prestar = []   #prestar un libro
+
     def agregar_libros(self, titulo, autor, anio_publicacion):
         if titulo in self.libros:
             print("El libro ya se encuentra en la biblioteca")
         else:
-            libro_nuevo = {"Titulo" : titulo, "Autor" : autor, "anio publicacion" : anio_publicacion}
-            self.libros[titulo] = libro_nuevo
-            self.biblioteca = self.libros
-
-    def mostrar_libros(self):
-        print(self.biblioteca)
+            libro_ingresado = [titulo, autor, anio_publicacion]
+            self.libros.append(libro_ingresado)
+            self.biblioteca['Libros'] = self.libros ################
 
 
-    def buscar_libro(self, nombre_libro):
+    def buscar_libro(self, libro_a_buscar):
         libro_encontrado = False
         for libro in self.libros:
-            if nombre_libro == libro:
+            if libro_a_buscar == libro[0]:
+                libro_encontrado = True
+                print(f"Información del libro buscado: {libro}")
+
+                break
+        if not libro_encontrado:
+            print("No se encuentra el libro en la biblioteca")
+
+    def prestar_libros(self, libro_a_prestar, nombre, fecha):
+        libro_encontrado = False
+        #prestar = []
+        for libro in self.libros:
+            if libro_a_prestar == libro[0]:
+                info = [libro, nombre, fecha] 
+                self.prestar.append(info[0])
+                self.libros.remove(libro)
                 libro_encontrado = True
                 break
-        if libro_encontrado:
-            print(f"Información del libro buscado: {self.libros[nombre_libro]}")
-        else:
-            print("El libro que estas buscando, no se encuentra")
-
-    def prestar_libro(self, nombre, fecha, libro_prestar):
-        #libros_prestados = {}
-        libro_encontra = None
-        for libro in self.biblioteca:
-            if libro_prestar in libro:
-                libro_encontra = libro
-
-                break
-        if libro_encontra:
-            libros_prestados = libro
-            del self.biblioteca[libros_prestados]
-
-            print(f"El libro {libros_prestados} fue prestado a {nombre} en la fecha {fecha}")
-        else:
-            print("No se encontro el libro")
-
+        if not libro_encontrado:
+            print("El libro no se ha encontrado")
 
     def devolver_libro(self, libro_a_devolver):
-        for libro, info in self.libros_prestados.items():
-            if libro_a_devolver == info["Titulo"]:
-                self.biblioteca[libro] = info
-                del self.libros_prestados[libro]
+        for libro in self.prestar:
+            if libro_a_devolver == libro[0]:
+                self.libros.append(libro)
+                self.prestar.remove(libro) 
+                print(f"Se ha devuelto el libro {libro[0]}")
                 break
+        else:
+            print("No se ha encontrado el libro")
+
+    def mostrar_libros(self):
+        print("LIbros no disponibles:", self.prestar)
+        print("Libros disponibles:", self.biblioteca)
+
+
+        

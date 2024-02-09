@@ -13,6 +13,7 @@ print("""
 
 
 biblioteca = []
+biblioteca = []
 
 prestado = []
 #opcion = int(input("Ingesa una opcion: "))
@@ -87,3 +88,59 @@ while True:
         
 
 #si el libro esta en la lista biblioteca, significa que el libro esta disponible
+
+
+"""
+class Biblioteca:
+    def __init__(self):
+        self.biblioteca = {}
+        self.libros = {}    # lista
+        self.libros_prestados = {}   # lista
+    def agregar_libros(self, titulo, autor, anio_publicacion):
+        if titulo in self.libros:
+            print("El libro ya se encuentra en la biblioteca")
+        else:
+            libro_nuevo = {"Titulo" : titulo, "Autor" : autor, "anio publicacion" : anio_publicacion}
+            self.libros[titulo] = libro_nuevo
+            self.biblioteca = self.libros
+
+    def mostrar_libros(self):
+        print(self.biblioteca)
+
+
+    def buscar_libro(self, nombre_libro):
+        libro_encontrado = False
+        for libro in self.libros:
+            if nombre_libro == libro:
+                libro_encontrado = True
+                break
+        if libro_encontrado:
+            print(f"Información del libro buscado: {self.libros[nombre_libro]}")
+        else:
+            print("El libro que estas buscando, no se encuentra")
+
+    def prestar_libro(self, nombre, fecha, libro_prestar):
+        libro_encontrado = False
+        for libro in self.biblioteca:
+            if libro_prestar == libro:
+                libro_encontrado = True
+                break
+        if libro_encontrado:
+            self.libros_prestados[libro_prestar] = {"Nombre": nombre, "Fecha": fecha}
+            del self.biblioteca[libro_prestar]
+            print(f"El libro {libro_prestar} fue prestado a {nombre} en la fecha {fecha}")
+        else:
+            print("No se encontro el libro en la biblioteca")
+
+    def devolver_libro(self, libro_a_devolver):
+        if libro_a_devolver in self.libros_prestados:
+            self.biblioteca[libro_a_devolver] = self.libros_prestados[libro_a_devolver]
+            del self.libros_prestados[libro_a_devolver]
+            print(f"El libro {libro_a_devolver} ha sido devuelto")
+        else:
+            print("El libro no ha sido prestado")
+
+
+    
+
+"""
