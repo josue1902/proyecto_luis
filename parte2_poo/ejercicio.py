@@ -1,4 +1,4 @@
-# Clases
+
 class Biblioteca:
     def __init__(self):
         self.biblioteca = {}
@@ -53,4 +53,3 @@ class Biblioteca:
         print("Libros disponibles:", self.biblioteca)
 
 
-        
